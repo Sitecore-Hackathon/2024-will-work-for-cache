@@ -1,0 +1,1 @@
+copy file .env.example to .env before running - environment variables are stored in .env so that file is excluded from source
