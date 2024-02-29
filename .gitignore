@@ -53,3 +53,9 @@ packages/
 
 #env files and docker data
 .env
+/env/deploy/*/*
+/env/device-detection-data/*
+/env/mssql-data/*
+/env/solr-data/*
+/env/traefik/certs/*
+!readme.md
