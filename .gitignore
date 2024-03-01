@@ -53,7 +53,7 @@ packages/
 
 #env files and docker data
 .env
-/env/deploy/*/*
+/env/docker/deploy/*/*
 /env/device-detection-data/*
 /env/mssql-data/*
 /env/solr-data/*
