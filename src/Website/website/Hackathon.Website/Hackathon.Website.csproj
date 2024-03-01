@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +42,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" />
     <PackageReference Include="RichardSzalay.Helix.Publishing.WebRoot" />
     <PackageReference Include="Sitecore.Assemblies.Platform" />
     <PackageReference Include="Sitecore.Assemblies.SitecoreExperienceAccelerator" />    
@@ -65,11 +65,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\CDDeploy.pubxml" />
@@ -118,7 +113,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets'))" />
     <Error Condition="!Exists('..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets'))" />
     <Error Condition="!Exists('..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets'))" />
