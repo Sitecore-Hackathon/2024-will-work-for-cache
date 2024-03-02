@@ -3,6 +3,7 @@ using System.Web;
 using Azure;
 using Azure.AI.Vision.ImageAnalysis;
 using Sitecore.Configuration;
+using Sitecore.Data.Items;
 using Sitecore.Shell.Framework.Commands;
 using Sitecore.Web.UI.Sheer;
 
@@ -14,34 +15,44 @@ namespace Hackathon.Feature.Commands
         {
             var response = Sitecore.Context.ClientPage.ClientResponse;
 
-            if (context.Items.Length != 1)
+            try
             {
-                response.Alert("Unable to determine the current item");
-                return;
+                if (context.Items.Length != 1)
+                    throw new Exception("Unable to determine the current item");
+
+                var item = context.Items[0];
+
+                var caption = GetAltTextForMediaItem(item);
+                response.Eval($"window.willWorkForCache.setFieldValueByName(\"Alt\", \"{HttpUtility.JavaScriptStringEncode(caption)}\", true);");
             }
+            catch (Exception e)
+            {
+                response.Alert(e.Message);
+            }
+        }
 
-            var item = context.Items[0];
-
+        /// <summary>
+        /// Returns 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static string GetAltTextForMediaItem(Item item)
+        {
             var media = Sitecore.Resources.Media.MediaManager.GetMedia(item);
             if (media == null)
-            {
-                response.Alert($"Unable to retrieve media for item: {item.ID}");
-                return;
-            }
+                throw new Exception($"Unable to retrieve media for item: {item.ID}");
+
+            if (!media.MediaData.HasContent)
+                throw new Exception($"There is no media data present for item: {item.ID}");
 
             var visionEndpoint = Settings.GetSetting("VISION_ENDPOINT");
             if (string.IsNullOrWhiteSpace(visionEndpoint))
-            {
-                response.Alert($"The VISION_ENDPOINT setting did not have a value");
-                return;
-            }
+                throw new Exception($"The VISION_ENDPOINT setting did not have a value");
 
             var visionKey = Settings.GetSetting("VISION_KEY");
             if (string.IsNullOrWhiteSpace(visionKey))
-            {
-                response.Alert($"The VISION_KEY setting did not have a value");
-                return;
-            }
+                throw new Exception($"The VISION_KEY setting did not have a value");
 
             try
             {
@@ -54,34 +65,24 @@ namespace Hackathon.Feature.Commands
                     mediaStream.Stream.Read(buffer, 0, buffer.Length);
                 }
 
+                // Image API can currently only produce the captions in EN - once this is expanded, can pass through a
+                // new ImageAnalysisOptions { Language = Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName }
+                // (or switch based on the language code if only a subset is supported, etc)
+
                 ImageAnalysisResult result = client.Analyze(new BinaryData(buffer), VisualFeatures.Caption);
 
                 var caption = result.Caption.Text;
-
                 if (string.IsNullOrWhiteSpace(caption))
-                {
-                    response.Alert("Sorry, no caption could be generated for this image.");
-                    return;
-                }
+                    throw new Exception("Sorry, no caption could be generated for this image.");
 
                 // Caption comes back all lowercase, so uppercase the first character
                 caption = caption.Substring(0, 1).ToUpper() + caption.Substring(1);
 
-                response.Eval($"window.willWorkForCache.setFieldValueByName(\"Alt\", \"{HttpUtility.JavaScriptStringEncode(caption)}\", true);");
+                return caption;
             }
             catch (Exception e)
             {
-                if (e is AggregateException agg)
-                {
-                    foreach (var ex in agg.InnerExceptions)
-                    {
-                        response.ShowError(ex);
-                    }
-                }
-                else
-                {
-                    response.ShowError(e);
-                }
+                throw new Exception("Sorry, an error occurred trying to generate a caption for this image.\r\n\r\n" + e.Message, e);
             }
         }
     }

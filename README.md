@@ -69,7 +69,7 @@ These are applied as Sitecore settings to take advantage of existing tooling - e
 
 ## Usage instructions
 
-* Content Editor > Media items
+* Content Editor > Image items or Media Library > Image items 
     * Use the "Generate Alt Text" ribbon button on the Media tab - the generated alt text will be inserted into the 'Alt' field for review
 * Content Editor > Page items
     * Use the "Summarize" ribbon button on the [TODO] tab - the generated summary text will be inserted into the [TODO] field(s) for review
