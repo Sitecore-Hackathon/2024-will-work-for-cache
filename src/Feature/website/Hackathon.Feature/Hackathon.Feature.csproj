@@ -47,6 +47,7 @@
     <PackageReference Include="HtmlAgilityPack" />
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" />
     <PackageReference Include="Sitecore.Kernel" />
+    <PackageReference Include="Sitecore.XA.Foundation.Multisite" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,7 @@
     <Compile Include="Commands\GenerateAltTextForCurrentMediaItem.cs" />
     <Compile Include="Commands\GenerateSummaryForCurrentPageItem.cs" />
     <Compile Include="Commands\ImageAnalysisCommandBase.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Pipelines\RenderContentEditor\AddAssistantScripts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
