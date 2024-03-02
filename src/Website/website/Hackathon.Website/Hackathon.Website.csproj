@@ -45,7 +45,8 @@
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" />
     <PackageReference Include="RichardSzalay.Helix.Publishing.WebRoot" />
     <PackageReference Include="Sitecore.Assemblies.Platform" />
-    <PackageReference Include="Sitecore.Assemblies.SitecoreExperienceAccelerator" />    
+    <PackageReference Include="Sitecore.Assemblies.SitecoreExperienceAccelerator" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

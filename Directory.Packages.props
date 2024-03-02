@@ -10,6 +10,7 @@
   	<PackageVersion Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="2.0.1" />
 	<PackageVersion Include="Azure.AI.Vision.ImageAnalysis" Version="1.0.0-beta.2" />
   	<PackageVersion Include="RichardSzalay.Helix.Publishing.WebRoot" Version="1.5.6" />
+	<PackageVersion Include="System.Diagnostics.DiagnosticSource" Version="6.0.1" />
   </ItemGroup>
 </Project>
 

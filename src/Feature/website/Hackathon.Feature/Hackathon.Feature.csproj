@@ -44,7 +44,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" />
     <PackageReference Include="Sitecore.Kernel" />
-	<PackageReference Include="Azure.AI.Vision.ImageAnalysis" />
+    <PackageReference Include="Azure.AI.Vision.ImageAnalysis" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -67,10 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.Hackathon.config" />
+    <Content Include="sitecore modules\WillCodeForCache\Scripts\Assistant.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\GenerateAltTextForCurrentMediaItem.cs" />
+    <Compile Include="Pipelines\RenderContentEditor\AddAssistantScripts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
