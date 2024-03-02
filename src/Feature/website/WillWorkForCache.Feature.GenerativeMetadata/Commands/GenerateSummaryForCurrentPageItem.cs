@@ -30,7 +30,7 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 
         public static string GetSummaryForPageItem(Item item)
         {
-            var result = GetCachedTextAnalysisResult(item, null);
+            var result = GetCachedTextAnalysisResult(item);
 
             var summary = result.Summary;
             if (string.IsNullOrWhiteSpace(summary))

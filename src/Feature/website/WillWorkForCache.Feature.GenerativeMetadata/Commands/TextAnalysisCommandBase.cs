@@ -40,12 +40,20 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
             public AnalyzedPageResult Result { get; set; }
         }
 
-        public static AnalyzedPageResult GetCachedTextAnalysisResult(Item item, string optionalLanguageCode)
+        /// <summary>
+        /// Returns a hydrated model including the summary and keywords from the Summarization API.
+        /// 
+        /// This will cache the return result and continue to use that value until the user analyzes a different page item.
+        /// </summary>
+        /// <param name="item">The item to perform the image analysis on</param>
+        /// <param name="optionalLanguageCode"></param>
+        /// <returns></returns>
+        public static AnalyzedPageResult GetCachedTextAnalysisResult(Item item)
         {
             Assert.ArgumentNotNull(item, nameof(item));
 
             // Cache based on the current username and the name of this method so we don't have to manage multiple cache keys.
-            var cacheKey = Sitecore.Context.GetUserName() + "_" + nameof(GetCachedTextAnalysisResult) + "_" + optionalLanguageCode;
+            var cacheKey = Sitecore.Context.GetUserName() + "_" + nameof(GetCachedTextAnalysisResult) + "_" + item.Language.ToString();
 
             // Cache the analysis result alongside the item ID, so we will store the result until this user analyzes a different item.
             if (HttpRuntime.Cache[cacheKey] is CachedTextAnalysisResult cachedValue && cachedValue.ItemId == item.ID.Guid)
@@ -54,7 +62,7 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
             var value = new CachedTextAnalysisResult
             {
                 ItemId = item.ID.Guid,
-                Result = GetTextAnalysisResult(item, optionalLanguageCode),
+                Result = GetTextAnalysisResult(item),
             };
 
             HttpRuntime.Cache[cacheKey] = value;
@@ -100,7 +108,12 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
             return parsedPageContent;
         }
 
-        public static AnalyzedPageResult GetTextAnalysisResult(Item item, string optionalLanguageCode)
+        /// <summary>
+        /// Returns a hydrated model including the summary and keywords from the Summarization API. 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static AnalyzedPageResult GetTextAnalysisResult(Item item)
         {
             var parsedPageContent = GetParsedPageContentForSummary(item);
 
