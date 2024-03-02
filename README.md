@@ -7,17 +7,20 @@
 # Hackathon Submission Entry form
 
 ## Team name
-Will Work For Cache
+⟹ Will Work For Cache
 
 ## Category
-Best use of AI
+⟹ Best use of AI
 
 ## Description
-Our module uses AI to help content authors improve the quality of the metadata behind their site, rather than trying to generate net-new content. This allows content authors to focus on the creation and curation of high-quality content while enabling automation of the often-overlooked boilerplate tasks that can keep the site accessible and searchable.
-* Image alt tag generation using Azure AI Vision Studio
-* Keyword and meta text summarization using [TODO]
+Our module uses Azure AI services to help content authors improve the quality of the metadata within their site, rather than trying to generate net-new content.
 
-The module is also designed to be useful and usable across a wide variety of existing Sitecore projects, and to be easily extended for other use cases (e.g. additional text fields).
+This allows content authors to focus on the creation and curation of high-quality content while enabling automation of the often-overlooked boilerplate tasks that can keep the site accessible and searchable.
+
+* Image alt tag generation using Azure AI Vision Studio
+* Keyword and meta text summarization using Azure Text Analytics
+
+The module designed to be useful and usable across a wide variety of existing Sitecore projects, and to be easily extended for other use cases (e.g. to populate additional text fields).
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_ [TODO]
@@ -25,50 +28,34 @@ The module is also designed to be useful and usable across a wide variety of exi
 ⟹ [Replace this Video link](#video-link)
 
 ## Pre-requisites and Dependencies
-
-* SPE
+* Sitecore 10.3.1 XM installed and running (containerized is fine) with a valid Sitecore license
+* SXA + SPE
 * Azure resources created, with endpoint URLs and access keys generated for:
     * 1x Computer Vision instance - for image alt tag generation - free tier is fine
     * 1x Text Analytics instance - Azure Cognitive Service for Language - for text summarization
 
 ## Installation instructions
 
-1. Use the Sitecore Installation wizard to install the [package - TODO](#link-to-package) - incl. core items, sample images, and the CM web.config
-2. Update the configuration settings notes in the **Configuration** section below
-
-> _A simple well-described installation process is required to win the Hackathon._  
-> Feel free to use any of the following tools/formats as part of the installation:
-> - Sitecore Package files
-> - Docker image builds
-> - Sitecore CLI
-> - msbuild
-> - npm / yarn
-> 
-> _Do not use_
-> - TDS
-> - Unicorn
- 
-for example:
-
-1. Use the Sitecore Installation wizard to install the [package](#link-to-package)
-2. ...
-3. profit
+1. This module runs on CM and requires two assembly binding redirects to be applied within the CM web.config. There is an updated copy of the base 10.3.1 XM web.config located here: [env/docker/deploy/cm/Web.config](env/docker/deploy/cm/Web.config) - copy this to your CM instance's wwwroot directory, or deploy it to the webroot of your CM docker instance.
+    * The only changes in this file are the bindings for *Azure.Core* and *System.Diagnostics.DiagnosticSource* as part of a larger project, would be applied via a web.config transform as part of the build process.
+2. Use the Sitecore Installation wizard to install the [package - TODO](#link-to-package)  
+3. Update the configuration item listed.
 
 ### Configuration
 
 #### Required Settings
 
-Configure the following settings in */App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config*:
+Update the following fields on the */sitecore/Settings/Feature/GenerativeMetadata* [TODO CHECK PATH] item:
 
-* VISION_ENDPOINT and VISION_KEY should be the endpoint and access key for the Vision Services instance you want to use:
-  
-        <setting name="VISION_ENDPOINT" value="https://whfc2024-vision.cognitiveservices.azure.com/" />
-        <setting name="VISION_KEY" value="0123456789abcdef0123456789abcdef" />
+For the endpoint and access key for the Vision Services instance you want to use:
+* **Vision Endpoint** should be the endpoint, e.g. "https://whfc2024-vision.cognitiveservices.azure.com/"
+* **Vision Key** should be the access key, e.g. "0123456789abcdef0123456789abcdef"
 
-* LANGUAGE_ENDPOINT and LANGUAGE_KEY should be the endpoint and access key for the text analytics instance you want to use:
+For the endpoint and access key for the Text Analytics instance you want to use:
+* **Language Endpoint** should be the endpoint, e.g. "https://hackathonlanguageanalysis.cognitiveservices.azure.com/"
+* **Language Key** should be the access key, e.g. "0123456789abcdef0123456789abcdef"
 
-        <setting name="LANGUAGE_ENDPOINT" value="[https://whfc2024-vision.cognitiveservices.azure.com/](https://hackathonlanguageanalysis.cognitiveservices.azure.com/)" />
-        <setting name="LANGUAGE_KEY" value="0123456789abcdef0123456789abcdef" />
+If required, update the following setting in [src/Feature/website/WillWorkForCache.Feature.GenerativeMetadata/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config](src/Feature/website/WillWorkForCache.Feature.GenerativeMetadata/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config) - note that this is included as part of the installation package, so if no changes are required it will just be installed as-is.
 
 * LOCALIZED_CM_URL should be set to the host name or IP address that can be used to retrieve content from the CM instance, i.e. by default, if running CM within a container, this will allow the CM server to download the contents of a rendered page from itself.
 
@@ -78,7 +65,7 @@ These are applied as Sitecore settings to take advantage of existing tooling - e
 
 #### Optional Settings
 
-The following settings can be updated to configure the minimum confidence and maximum number of tags that will be saved for media items.
+The following settings in the .config file can be updated to configure the minimum confidence and maximum number of tags that will be saved for media items.
 
           <setting name="GenerativeMetadata.ImageTagMinimumConfidence" value="0.75" />
           <setting name="GenerativeMetadata.ImageTagMaximumCount" value="10" />
@@ -105,9 +92,6 @@ The **Summary** button will write to:
 
 ![Sample fields that each button writes to](docs/images/Text-Generative.png?raw=true "Sample fields that each button writes to")
 
-
-
-
 ### Media Metadata
 
 A new ribbon section named "Generative Metadata" is added to the "Media" tab for images. This is available whether viewing the Content Editor or the Media Library.
@@ -133,26 +117,10 @@ If the API returns the same response as is currently in the field, a browser ale
 Not all languages are supported, so for example Albanian will return an error:
 ![The Keywords field cannot be updated with Albanian content](docs/images/Media-Layers-SQ.png?raw=true "The Keywords field cannot be updated with Albanian content")
  
-
-### Future Improvements
-
-* Experience Editor - Button for an edit frame for text fields?
-* Experience Editor - Button for an edit frame for images in an image field?
-* Powershell reporting (+ buttons from there?)
- 
-⟹ Provide documentation about your module, how do the users use your module, where are things located, what do the icons mean, are there any secret shortcuts etc.
-
-Include screenshots where necessary. You can add images to the `./images` folder and then link to them from your documentation:
-
-![Hackathon Logo](docs/images/hackathon.png?raw=true "Hackathon Logo")
-
-You can embed images of different formats too:
-
-![Deal With It](docs/images/deal-with-it.gif?raw=true "Deal With It")
-
-And you can embed external images too:
-
-![Random](https://thiscatdoesnotexist.com/)
-
 ## Comments
-If you'd like to make additional comments that is important for your module entry.
+
+Built with a view for future extension:
+
+* Experience Editor integration to allow for these fields to be populated from the EE view when working with an image or page
+* Making it as easy as possible to write text in to a variety of other fields, e.g. when content authors are using other page templates with different field breakdowns
+* Integration with Powershell reports - the current "Images with missing Alt text" report can be used to cycle through images and click the 'Alt Text' ribbon button, but tighter integration would be nice
