@@ -10,7 +10,7 @@ using Sitecore.Diagnostics;
 using Sitecore.Shell.Feeds.Sections;
 using Sitecore.Shell.Framework.Commands;
 
-namespace Hackathon.Feature.Commands
+namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public class GenerateKeywordTagsForCurrentMediaItem : ImageAnalysisCommandBase
     {

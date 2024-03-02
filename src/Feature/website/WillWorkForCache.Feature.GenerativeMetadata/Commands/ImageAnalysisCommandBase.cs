@@ -10,7 +10,7 @@ using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 using Sitecore.Web.UI.Sheer;
 
-namespace Hackathon.Feature.Commands
+namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public abstract class ImageAnalysisCommandBase : Command
     {

@@ -3,7 +3,7 @@ using Azure.AI.Vision.ImageAnalysis;
 using Sitecore.Data.Items;
 using Sitecore.Shell.Framework.Commands;
 
-namespace Hackathon.Feature.Commands
+namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public class GenerateAltTextForCurrentMediaItem : ImageAnalysisCommandBase
     {

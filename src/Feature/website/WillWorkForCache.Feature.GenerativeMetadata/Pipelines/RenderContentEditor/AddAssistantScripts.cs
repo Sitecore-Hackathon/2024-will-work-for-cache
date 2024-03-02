@@ -10,7 +10,7 @@ using System.Web.UI;
 using Sitecore.Configuration;
 using Sitecore.Resources;
 
-namespace Hackathon.Feature.Pipelines.RenderContentEditor
+namespace WillWorkForCache.Feature.GenerativeMetadata.Pipelines.RenderContentEditor
 {
     public class AddAssistantScripts
     {

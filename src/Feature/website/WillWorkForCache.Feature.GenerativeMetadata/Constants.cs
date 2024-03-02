@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hackathon.Feature
+namespace WillWorkForCache.Feature.GenerativeMetadata
 {
     public class Constants
     {

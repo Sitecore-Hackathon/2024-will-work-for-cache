@@ -5,11 +5,11 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{2BCD362C-3311-4359-8115-736345C61168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Feature", "src\Feature\website\Hackathon.Feature\Hackathon.Feature.csproj", "{E61787A4-A410-4AB5-92CC-6CB4C7F3FE1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillWorkForCache.Feature.GenerativeMetadata", "src\Feature\website\WillWorkForCache.Feature.GenerativeMetadata\WillWorkForCache.Feature.GenerativeMetadata.csproj", "{E61787A4-A410-4AB5-92CC-6CB4C7F3FE1B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{8C2FE2D0-0927-4A4B-8A01-46B93D11CE7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Website", "src\Website\website\Hackathon.Website\Hackathon.Website.csproj", "{24263FFD-3E45-4CDE-8964-25841590CCF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WillWorkForCache.Website", "src\Website\website\WillWorkForCache.Website\WillWorkForCache.Website.csproj", "{24263FFD-3E45-4CDE-8964-25841590CCF0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E61787A4-A410-4AB5-92CC-6CB4C7F3FE1B} = {E61787A4-A410-4AB5-92CC-6CB4C7F3FE1B}
 	EndProjectSection

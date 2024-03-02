@@ -14,9 +14,10 @@ using Sitecore.Web;
 using Sitecore.XA.Foundation.Multisite;
 using Sitecore.Data.Managers;
 using Sitecore.Data;
+using System.Web;
 
 
-namespace Hackathon.Feature.Commands
+namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public class GenerateSummaryForCurrentPageItem : Command
     {
@@ -30,9 +31,18 @@ namespace Hackathon.Feature.Commands
 
         public override void Execute(CommandContext context)
         {
+            var response = Context.ClientPage.ClientResponse;
+
             if (context.Items.Length != 1)
             {
-                Context.ClientPage.ClientResponse.Alert("Unable to determine the current item");
+                response.Alert("Unable to determine the current item.");
+                return;
+            }
+
+            //exit if key and endpoint are not configured
+            if (string.IsNullOrEmpty(languageKey) || string.IsNullOrEmpty(languageEndpoint) || string.IsNullOrEmpty(localizedCMurl))
+            {
+                response.Alert("Unable to generate summaries.");
                 return;
             }
 
@@ -40,16 +50,15 @@ namespace Hackathon.Feature.Commands
             //if item is not a page item, return
             if (!TemplateManager.GetTemplate(contextItem).InheritsFrom(new ID(Constants.PageBaseTemplate.TemplateId)))
             {
-                Context.ClientPage.ClientResponse.Alert("Item is not a page and cannot have a summary generated.");
+                response.Alert("Item is not a page and cannot have a summary generated.");
                 return;
             }
-
 
             // get site info from page item to make sure item is within a site and to append to the url to handle multisite
             string siteName = GetSiteInfoFromPath(contextItem);
             if (string.IsNullOrEmpty(siteName))
             {
-                Context.ClientPage.ClientResponse.Alert("Item is not within a site and cannot be rendered to generate a summary.");
+                response.Alert("Item is not within a site and cannot be rendered to generate a summary.");
                 return;
             }
 
@@ -57,21 +66,25 @@ namespace Hackathon.Feature.Commands
             string original = LinkManager.GetItemUrl(contextItem);
             var itemPageUrl = GetLocalUrl(original, localizedCMurl, siteName);
 
-            var pageString = Sitecore.Web.WebUtil.ExecuteWebPage(itemPageUrl);
+            var pageString = WebUtil.ExecuteWebPage(itemPageUrl);
 
             //parse text content out of html from rendered page
             var parsedPageContent = GetTrimmedHTML(pageString);
 
             if (string.IsNullOrEmpty(parsedPageContent))
             {
-                Context.ClientPage.ClientResponse.Alert("There is no content on the page so a summary cannot be generated.");
+                response.Alert("There is no content on the page so a summary cannot be generated.");
                 return;
             }
 
             string pageSummary;
             try
             {
-                var client = new TextAnalyticsClient(endpoint, credentials);
+                var clientOptions = new TextAnalyticsClientOptions
+                {
+                    DefaultLanguage = contextItem.Language.ToString()
+                };
+                var client = new TextAnalyticsClient(endpoint, credentials, clientOptions);
 
                 // Perform the text analysis operation.
                 pageSummary = GetSummarization(client, parsedPageContent);
@@ -79,16 +92,17 @@ namespace Hackathon.Feature.Commands
             }
             catch (Exception e)
             {
-                Context.ClientPage.ClientResponse.ShowError(e);
+                response.ShowError(e);
                 return;
             }
 
             if (string.IsNullOrEmpty(pageSummary))
             {
-                pageSummary = "Unable to generate summary.";
+                response.Alert("Unable to generate summary.");
+                return;
             }
 
-            Context.ClientPage.ClientResponse.Alert(pageSummary);
+            response.Eval($"window.generativeMetadata.setFieldValueByName(\"Page description\", \"{HttpUtility.JavaScriptStringEncode(pageSummary)}\", false, false);");
         }
 
         /// <summary>
