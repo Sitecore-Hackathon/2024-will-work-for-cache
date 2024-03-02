@@ -15,7 +15,7 @@ This allows content authors to focus on the creation and curation of high-qualit
 * Image alt tag generation using Azure AI Vision Studio
 * Keyword and meta text summarization using Azure Text Analytics
 
-The module designed to be useful and usable across a wide variety of existing Sitecore projects, and to be easily extended for other use cases (e.g. to populate additional text fields).
+The module is designed to be useful and usable across a wide variety of existing Sitecore projects, and to be easily extended for other use cases (e.g. to populate additional text fields).
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_ [TODO]
@@ -28,6 +28,8 @@ The module designed to be useful and usable across a wide variety of existing Si
 * Azure resources created, with endpoint URLs and access keys generated for:
     * 1x Computer Vision instance - for image alt tag generation - free tier is fine
     * 1x Text Analytics instance - Azure Cognitive Service for Language - for text summarization
+ 
+_Note: An existing set of endpoint URLs and access keys will be provided for judging._
 
 ## Installation instructions
 
