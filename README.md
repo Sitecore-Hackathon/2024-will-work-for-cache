@@ -52,7 +52,7 @@ For the endpoint and access key for the Text Analytics instance you want to use:
 * **Language Endpoint** should be the endpoint, e.g. "https://hackathonlanguageanalysis.cognitiveservices.azure.com/"
 * **Language Key** should be the access key, e.g. "0123456789abcdef0123456789abcdef"
 
-If required, update the following setting in [src/Feature/website/WillWorkForCache.Feature.GenerativeMetadata/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config](src/Feature/website/WillWorkForCache.Feature.GenerativeMetadata/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config) - note that this is included as part of the installation package, so if no changes are required it will just be installed as-is.
+If required, update the following setting in [/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config](src/Feature/website/WillWorkForCache.Feature.GenerativeMetadata/App_Config/Include/Feature/WillWorkForCache.Feature.GenerativeMetadata.config) - note that this is included as part of the installation package, so if no changes are required it will just be installed as-is.
 
 * LOCALIZED_CM_URL should be set to the host name or IP address that can be used to retrieve content from the CM instance, i.e. by default, if running CM within a container, this will allow the CM server to download the contents of a rendered page from itself.
 
