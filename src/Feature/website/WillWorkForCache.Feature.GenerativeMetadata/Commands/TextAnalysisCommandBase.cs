@@ -20,12 +20,9 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public abstract class TextAnalysisCommandBase : AnalysisCommandBase
     {
-        static string languageKey => Settings.GetSetting("LANGUAGE_KEY");
-        static string languageEndpoint => Settings.GetSetting("LANGUAGE_ENDPOINT");
+        private static string languageKey { get; set; }
+        private static string languageEndpoint { get; set; }
         static string localizedCMurl => Settings.GetSetting("LOCALIZED_CM_URL");
-
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential(languageKey);
-        private static readonly Uri endpoint = new Uri(languageEndpoint);
 
         private class CachedTextAnalysisResult
         {
@@ -48,8 +45,11 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
         /// <param name="item">The item to perform the image analysis on</param>
         /// <param name="optionalLanguageCode"></param>
         /// <returns></returns>
-        public static AnalyzedPageResult GetCachedTextAnalysisResult(Item item)
+        public static AnalyzedPageResult GetCachedTextAnalysisResult(Item item, Item settingsItem)
         {
+            languageKey = settingsItem["LanguageKey"];
+            languageEndpoint = settingsItem["LanguageEndpoint"];
+
             Assert.ArgumentNotNull(item, nameof(item));
 
             // Cache based on the current username and the name of this method so we don't have to manage multiple cache keys.
@@ -121,6 +121,10 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
             {
                 DefaultLanguage = item.Language.ToString()
             };
+
+            AzureKeyCredential credentials = new AzureKeyCredential(languageKey);
+            Uri endpoint = new Uri(languageEndpoint);
+
             var client = new TextAnalyticsClient(endpoint, credentials, clientOptions);
 
             // Perform the text analysis operation.

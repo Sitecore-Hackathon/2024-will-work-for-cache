@@ -30,7 +30,11 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 
         public static string GetSummaryForPageItem(Item item)
         {
-            var result = GetCachedTextAnalysisResult(item);
+            var settingsItem = GetGenerativeMetadataSettingsItem(item.Database);
+            if (settingsItem == null)
+                throw new Exception($"Unable to find settings for Generative Metadata");
+
+            var result = GetCachedTextAnalysisResult(item, settingsItem);
 
             var summary = result.Summary;
             if (string.IsNullOrWhiteSpace(summary))

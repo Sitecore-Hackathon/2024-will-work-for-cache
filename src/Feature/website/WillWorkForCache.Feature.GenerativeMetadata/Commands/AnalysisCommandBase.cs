@@ -1,4 +1,5 @@
-﻿using Sitecore.Data.Items;
+﻿using Sitecore.Data;
+using Sitecore.Data.Items;
 using Sitecore.Shell.Framework.Commands;
 using Sitecore.Web.UI.Sheer;
 using System;
@@ -8,6 +9,7 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 {
     public abstract class AnalysisCommandBase : Command
     {
+        protected static Item GetGenerativeMetadataSettingsItem(Database db) => db?.GetItem(new Sitecore.Data.ID(Constants.GenerativeMetadataSettings.ItemId)) ?? null;
 
         /// <summary>
         /// Returns the only item from context.Items, or throws an exception.

@@ -76,13 +76,17 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
             if (!media.MediaData.HasContent)
                 throw new Exception($"There is no media data present for item: {item.ID}");
 
-            var visionEndpoint = Settings.GetSetting("VISION_ENDPOINT");
-            if (string.IsNullOrWhiteSpace(visionEndpoint))
-                throw new Exception($"The VISION_ENDPOINT setting did not have a value");
+            var settingsItem = GetGenerativeMetadataSettingsItem(item.Database);
+            if (settingsItem == null)
+                throw new Exception($"Unable to find settings for Generative Metadata: {item.ID}");
 
-            var visionKey = Settings.GetSetting("VISION_KEY");
+            var visionEndpoint = settingsItem["VisionEndpoint"];
+            if (string.IsNullOrWhiteSpace(visionEndpoint))
+                throw new Exception($"The VisionEndpoint setting did not have a value");
+
+            var visionKey = settingsItem["VisionKey"];
             if (string.IsNullOrWhiteSpace(visionKey))
-                throw new Exception($"The VISION_KEY setting did not have a value");
+                throw new Exception($"The VisionKey setting did not have a value");
 
             try
             {

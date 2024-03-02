@@ -25,7 +25,7 @@ namespace WillWorkForCache.Feature.GenerativeMetadata.Commands
 
         public static string GetKeywordsForPageItem(Item item)
         {   
-            var result = GetCachedTextAnalysisResult(item);
+            var result = GetCachedTextAnalysisResult(item, GetGenerativeMetadataSettingsItem(item.Database));
 
             var keywords = result.Keywords;
             if (string.IsNullOrWhiteSpace(keywords))
