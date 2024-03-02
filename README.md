@@ -69,10 +69,40 @@ These are applied as Sitecore settings to take advantage of existing tooling - e
 
 ## Usage instructions
 
-* Content Editor > Image items or Media Library > Image items 
-    * Use the "Generate Alt Text" ribbon button on the Media tab - the generated alt text will be inserted into the 'Alt' field for review
+### Media Metadata
+
+A new ribbon section named "Generative Metadata" is added to the "Media" tab for images. This is available whether viewing the Content Editor or the Media Library.
+
+![TODO](docs/images/Media-Ribbons.png?raw=true "TODO")
+
+This ribbon section contains three buttons which will pass the image to your Vision Services instance and then update the text in the relevant field with the content from the image analysis.
+
+Each button will scroll to the field to show any changes being made so the content author can review or update before choosing to Save the item.
+
+The API response is cached to reduce the number of API calls required where possible (e.g. between the first two buttons, and the third button if it is also in English). Only the response for one item at a time is cached to prevent cached data from persisting for too long.
+
+If the API returns the same response as is currently in the field, a browser alert will be shown to confirm that nothing has changed.
+
+**Alt Text** will update the "Alt" field. This will always return English content as the Azure image AI currently only supports caption generation in English.
+![TODO](docs/images/Media-Alt.png?raw=true "TODO")
+
+**Keyword Tags** will update the "Keywords" field. Note that even if a different language version is selected, this button will always populate with the English content as well.
+![TODO](docs/images/Media-Layers-EN.png?raw=true "TODO")
+
+**Tags w/ Lang** will update the "Keywords" field with keyword tags generated using the language of the current item version. For example, after selecting Thai (a supported language):
+![TODO](docs/images/Media-Layers.png?raw=true "TODO")
+Not all languages are supported, so for example Albanian will return an error:
+![TODO](docs/images/Media-Layers-SQ.png?raw=true "TODO")
+ 
+### Page Metadata
 * Content Editor > Page items
     * Use the "Summarize" ribbon button on the [TODO] tab - the generated summary text will be inserted into the [TODO] field(s) for review
+
+ 
+ 
+ 
+ 
+
 
 Future plans:
 * Experience Editor - Button for an edit frame for text fields?
