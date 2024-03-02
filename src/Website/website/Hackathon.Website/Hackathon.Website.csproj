@@ -76,8 +76,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Directory.build.props" />
-    <Content Include="Hackathon.Website.wpp.targets" />
+    <None Include="Directory.build.props" />
+    <None Include="Hackathon.Website.wpp.targets" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
