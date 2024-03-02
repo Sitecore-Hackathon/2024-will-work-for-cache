@@ -113,13 +113,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets'))" />
-    <Error Condition="!Exists('..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets'))" />
-    <Error Condition="!Exists('..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets'))" />
   </Target>
-  <Import Project="..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets" Condition="Exists('..\..\..\..\packages\RichardSzalay.Helix.Publishing.WebRoot.1.5.6\build\RichardSzalay.Helix.Publishing.WebRoot.targets')" />
-  <Import Project="..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets" Condition="Exists('..\..\..\..\packages\Sitecore.Assemblies.SitecoreExperienceAccelerator.10.3.0\build\Sitecore.Assemblies.SitecoreExperienceAccelerator.targets')" />
-  <Import Project="..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets" Condition="Exists('..\..\..\..\packages\Sitecore.Assemblies.Platform.10.3.1\build\Sitecore.Assemblies.Platform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
