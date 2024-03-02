@@ -124,10 +124,11 @@ namespace Hackathon.Feature.Commands
         /// <param name="response">The Sitecore.Context.ClientPage.ClientResponse to write this Javascript snippet to.</param>
         /// <param name="fieldTitle">The field title to match in the content editor, e.g. "Keywords" or "Alt"</param>
         /// <param name="newValue">The value to write in to this text input field</param>
+        /// <param name="scrollToField">If true, try to scroll the browser to the targeted field.</param>
         /// <param name="alertIfSame">True to show an alert if the value is already the same, false to silently ignore.</param>
-        protected static void SetContentEditorFieldValue(ClientResponse response, string fieldTitle, string newValue, bool alertIfSame)
+        protected static void SetContentEditorFieldValue(ClientResponse response, string fieldTitle, string newValue, bool scrollToField = true, bool alertIfSame = true)
         {
-            response.Eval($"window.willWorkForCache.setFieldValueByName(\"{HttpUtility.JavaScriptStringEncode(fieldTitle)}\", \"{HttpUtility.JavaScriptStringEncode(newValue)}\", {(alertIfSame ? "true" : "false")});");
+            response.Eval($"window.willWorkForCache.setFieldValueByName(\"{HttpUtility.JavaScriptStringEncode(fieldTitle)}\", \"{HttpUtility.JavaScriptStringEncode(newValue)}\", {(scrollToField ? "true" : "false")}, {(alertIfSame ? "true" : "false")});");
         }
     }
 }

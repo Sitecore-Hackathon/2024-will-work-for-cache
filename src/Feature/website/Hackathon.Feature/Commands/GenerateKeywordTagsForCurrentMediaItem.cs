@@ -40,7 +40,7 @@ namespace Hackathon.Feature.Commands
                 }
                 else
                 {
-                    SetContentEditorFieldValue(response, "Keywords", string.Join(", ", matchingTags), true);
+                    SetContentEditorFieldValue(response, "Keywords", string.Join(", ", matchingTags), true, true);
                 }
             }
             catch (Exception e)

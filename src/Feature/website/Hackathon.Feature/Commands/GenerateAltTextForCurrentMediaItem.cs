@@ -16,7 +16,7 @@ namespace Hackathon.Feature.Commands
                 var item = GetItemOrThrowException(context);
                 var caption = GetAltTextForMediaItem(item);
 
-                SetContentEditorFieldValue(response, "Alt", caption, true);
+                SetContentEditorFieldValue(response, "Alt", caption, true, true);
             }
             catch (Exception e)
             {

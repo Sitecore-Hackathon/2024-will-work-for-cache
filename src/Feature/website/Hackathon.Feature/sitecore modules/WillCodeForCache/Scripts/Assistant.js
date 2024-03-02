@@ -1,15 +1,23 @@
 ﻿window.willWorkForCache = window.willWorkForCache || {};
 
-window.willWorkForCache.setFieldValue = function (fieldId, newValue, alertIfSame) {
+window.willWorkForCache.setFieldValue = function (fieldId, newValue, scrollToField, alertIfSame, fieldTitle) {
     // Get the input field and change the value using jQuery since it's built in
     var field = jQuery("#" + fieldId);
 
     // Scroll the whole 'row' of the table that the input is in into view
-    field.closest("table")[0].scrollIntoView({ behavior: 'smooth' })
+    if (scrollToField) {
+        field.closest("table")[0].scrollIntoView({ behavior: 'smooth' })
+    }
 
     if (field.val() == newValue) {
         if (alertIfSame == true) {
-            alert("The value has not changed.");
+            if (typeof fieldTitle === 'string') {
+                alert("The value in field '" + fieldTitle + "' has not changed.");
+            }
+            else {
+                alert("The value has not changed.");
+            }
+
         }
     }
     else {
@@ -24,7 +32,8 @@ window.willWorkForCache.setFieldValue = function (fieldId, newValue, alertIfSame
     scContent.startValidators();
 }
 
-window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, alertIfSame) {
+window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, scrollToField, alertIfSame) {
+
     // The markup we are looking for contains an input with an ID like FIELDxxxxxx:
     //
     // <td class="scEditorFieldMarkerInputCell">
@@ -69,5 +78,5 @@ window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, al
     var fieldId = $title.next().children('input,textarea').attr("id");
     console.log("Found field ID for title '" + fieldTitle + "' as: " + fieldId);
 
-    window.willWorkForCache.setFieldValue(fieldId, newValue, alertIfSame);
+    window.willWorkForCache.setFieldValue(fieldId, newValue, scrollToField, alertIfSame, fieldTitle);
 }
