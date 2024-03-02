@@ -77,11 +77,15 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AnalysisCommandBase.cs" />
+    <Compile Include="Commands\GenerateKeywordsForCurrentPageItem.cs" />
     <Compile Include="Commands\GenerateKeywordTagsForCurrentMediaItem.cs" />
     <Compile Include="Commands\GenerateAltTextForCurrentMediaItem.cs" />
     <Compile Include="Commands\GenerateSummaryForCurrentPageItem.cs" />
     <Compile Include="Commands\ImageAnalysisCommandBase.cs" />
+    <Compile Include="Commands\TextAnalysisCommandBase.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Models\AnalyzedPageResult.cs" />
     <Compile Include="Pipelines\RenderContentEditor\AddAssistantScripts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
