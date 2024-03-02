@@ -62,8 +62,8 @@ namespace Hackathon.Feature.Commands
 
         public static IReadOnlyList<string> FilterTags(IReadOnlyList<DetectedTag> tags)
         {
-            const string minimumConfidenceConfigKey = "WillCodeForCache.ImageTagMinimumConfidence";
-            const string maximumCountConfigKey = "WillCodeForCache.ImageTagMaximumCount";
+            const string minimumConfidenceConfigKey = "GenerativeMetadata.ImageTagMinimumConfidence";
+            const string maximumCountConfigKey = "GenerativeMetadata.ImageTagMaximumCount";
 
             Assert.ArgumentNotNull(tags, nameof(tags));
 
@@ -82,7 +82,7 @@ namespace Hackathon.Feature.Commands
             }
 
             return tags
-                .Where(tag => Math.Abs(tag.Confidence - minimumConfidence) < 0.01)
+                .Where(tag => (tag.Confidence - minimumConfidence) > -0.01)
                 .Take(maximumCount)
                 .Select(tag => tag.Name)
                 .ToList();

@@ -128,7 +128,7 @@ namespace Hackathon.Feature.Commands
         /// <param name="alertIfSame">True to show an alert if the value is already the same, false to silently ignore.</param>
         protected static void SetContentEditorFieldValue(ClientResponse response, string fieldTitle, string newValue, bool scrollToField = true, bool alertIfSame = true)
         {
-            response.Eval($"window.willWorkForCache.setFieldValueByName(\"{HttpUtility.JavaScriptStringEncode(fieldTitle)}\", \"{HttpUtility.JavaScriptStringEncode(newValue)}\", {(scrollToField ? "true" : "false")}, {(alertIfSame ? "true" : "false")});");
+            response.Eval($"window.generativeMetadata.setFieldValueByName(\"{HttpUtility.JavaScriptStringEncode(fieldTitle)}\", \"{HttpUtility.JavaScriptStringEncode(newValue)}\", {(scrollToField ? "true" : "false")}, {(alertIfSame ? "true" : "false")});");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿window.willWorkForCache = window.willWorkForCache || {};
+﻿window.generativeMetadata = window.generativeMetadata || {};
 
-window.willWorkForCache.setFieldValue = function (fieldId, newValue, scrollToField, alertIfSame, fieldTitle) {
+window.generativeMetadata.setFieldValue = function (fieldId, newValue, scrollToField, alertIfSame, fieldTitle) {
     // Get the input field and change the value using jQuery since it's built in
     var field = jQuery("#" + fieldId);
 
@@ -32,7 +32,7 @@ window.willWorkForCache.setFieldValue = function (fieldId, newValue, scrollToFie
     scContent.startValidators();
 }
 
-window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, scrollToField, alertIfSame) {
+window.generativeMetadata.setFieldValueByName = function (fieldTitle, newValue, scrollToField, alertIfSame) {
 
     // The markup we are looking for contains an input with an ID like FIELDxxxxxx:
     //
@@ -78,5 +78,5 @@ window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, sc
     var fieldId = $title.next().children('input,textarea').attr("id");
     console.log("Found field ID for title '" + fieldTitle + "' as: " + fieldId);
 
-    window.willWorkForCache.setFieldValue(fieldId, newValue, scrollToField, alertIfSame, fieldTitle);
+    window.generativeMetadata.setFieldValue(fieldId, newValue, scrollToField, alertIfSame, fieldTitle);
 }

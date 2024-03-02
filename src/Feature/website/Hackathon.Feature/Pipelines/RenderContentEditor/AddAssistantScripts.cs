@@ -18,7 +18,7 @@ namespace Hackathon.Feature.Pipelines.RenderContentEditor
 
         public void Process(PipelineArgs args)
         {
-            var resources = Settings.GetSetting("WillCodeForCache.ScriptFiles");
+            var resources = Settings.GetSetting("GenerativeMetadata.ScriptFiles");
 
             if (string.IsNullOrEmpty(resources))
                 return;
