@@ -23,11 +23,15 @@ namespace Hackathon.Feature.Commands
             {
                 var item = GetItemOrThrowException(context);
 
+                // The only custom parameter we care about here is if "autolang=1". If so, try and retrieve tags
+                // by passing through the current item's two-letter ISO language code - however as English is the default
+                // don't pass through a code for that to improve cacheability, since we can batch Caption+Tags only
+                // in English / no specified language at the moment.
                 var isAutoLang = context.Parameters.Get("autolang") == "1";
-
                 if (isAutoLang)
                 {
-                    customLanguageCode = item.Language.CultureInfo.TwoLetterISOLanguageName;
+                    var languageCode = item.Language.CultureInfo.TwoLetterISOLanguageName;
+                    customLanguageCode = string.Equals("en", languageCode, StringComparison.OrdinalIgnoreCase) ? null : languageCode;
                 }
 
                 var tags = GetTagsForMediaItem(item, customLanguageCode);
@@ -36,7 +40,7 @@ namespace Hackathon.Feature.Commands
 
                 if (matchingTags.Count == 0)
                 {
-                    response.Alert($"{tags.Count} potential keyword tags were identified but none matched the minimum confidence criteria.\r\n\r\nThe disregarded keywords were: {string.Join(", ", tags)}");
+                    response.Alert($"{tags.Count} potential keyword tags were identified but none matched the minimum confidence criteria.\r\nThe disregarded keywords were: {string.Join(", ", tags.Select(t => $"{t.Name} ({t.Confidence:F2})"))}");
                 }
                 else
                 {
@@ -78,7 +82,7 @@ namespace Hackathon.Feature.Commands
             }
 
             return tags
-                .Where(tag => tag.Confidence >= minimumConfidence)
+                .Where(tag => Math.Abs(tag.Confidence - minimumConfidence) < 0.01)
                 .Take(maximumCount)
                 .Select(tag => tag.Name)
                 .ToList();
@@ -86,6 +90,10 @@ namespace Hackathon.Feature.Commands
 
         public static IReadOnlyList<DetectedTag> GetTagsForMediaItem(Item item, string optionalLanguageCode)
         {
+            // The vision API currently only supports generating the caption in English (which is the default if no language
+            // parameter is supplied). Making the call with caching enabled, with no language selected, and requesting
+            // Caption + Tags will mean that the response is as reusable by other commands as possible.
+            // What that means here is if we aren't requesting a specific language -> get Caption + Tags; otherwise just get Tags.
             var features = string.IsNullOrWhiteSpace(optionalLanguageCode)
                 ? VisualFeatures.Caption | VisualFeatures.Tags
                 : VisualFeatures.Tags;
