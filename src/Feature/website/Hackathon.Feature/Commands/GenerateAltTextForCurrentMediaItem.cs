@@ -26,6 +26,9 @@ namespace Hackathon.Feature.Commands
 
         public static string GetAltTextForMediaItem(Item item)
         {
+            // The vision API currently only supports generating the caption in English (which is the default if no language
+            // parameter is supplied). Making the call with caching enabled, with no language selected, and requesting
+            // Caption + Tags will mean that the response is as reusable by other commands as possible.
             var result = GetCachedImageAnalysisResult(item, VisualFeatures.Caption | VisualFeatures.Tags, null);
 
             var caption = result.Caption.Text;
