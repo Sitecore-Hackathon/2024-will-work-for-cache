@@ -43,8 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.AI.TextAnalytics" />
-    <PackageReference Include="Azure.AI.Vision.ImageAnalysis" />  
-    <PackageReference Include="HtmlAgilityPack" />  
+    <PackageReference Include="Azure.AI.Vision.ImageAnalysis" />
+    <PackageReference Include="HtmlAgilityPack" />
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" />
     <PackageReference Include="Sitecore.Kernel" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" />
@@ -76,8 +76,10 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\GenerateKeywordTagsForCurrentMediaItem.cs" />
     <Compile Include="Commands\GenerateAltTextForCurrentMediaItem.cs" />
     <Compile Include="Commands\GenerateSummaryForCurrentPageItem.cs" />
+    <Compile Include="Commands\ImageAnalysisCommandBase.cs" />
     <Compile Include="Pipelines\RenderContentEditor\AddAssistantScripts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

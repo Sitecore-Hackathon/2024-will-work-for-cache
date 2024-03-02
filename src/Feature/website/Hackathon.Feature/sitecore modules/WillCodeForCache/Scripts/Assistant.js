@@ -4,15 +4,15 @@ window.willWorkForCache.setFieldValue = function (fieldId, newValue, alertIfSame
     // Get the input field and change the value using jQuery since it's built in
     var field = jQuery("#" + fieldId);
 
+    // Scroll the whole 'row' of the table that the input is in into view
+    field.closest("table")[0].scrollIntoView({ behavior: 'smooth' })
+
     if (field.val() == newValue) {
         if (alertIfSame == true) {
             alert("The value has not changed.");
         }
     }
     else {
-        // Scroll the whole 'row' of the table that the input is in into view
-        field.closest("table")[0].scrollIntoView({ behavior: 'smooth' })
-
         // Set the value of the field 
         field.val(newValue);
     }
@@ -66,7 +66,7 @@ window.willWorkForCache.setFieldValueByName = function (fieldTitle, newValue, al
     }
 
     // Now if we have one match, find the input field (the next element's child)
-    var fieldId = $title.next().children('input').attr("id");
+    var fieldId = $title.next().children('input,textarea').attr("id");
     console.log("Found field ID for title '" + fieldTitle + "' as: " + fieldId);
 
     window.willWorkForCache.setFieldValue(fieldId, newValue, alertIfSame);
