@@ -121,3 +121,36 @@ Built with a view for future extension:
 * Experience Editor integration to allow for these fields to be populated from the EE view when working with an image or page
 * Making it as easy as possible to write text in to a variety of other fields, e.g. when content authors are using other page templates with different field breakdowns
 * Integration with Powershell reports - the current "Images with missing Alt text" report can be used to cycle through images and click the 'Alt Text' ribbon button, but tighter integration would be nice
+
+## Sitecore Package Details
+
+### WillWorkForCache-GenerativeMetadata-Module-1.0
+
+Items
+/sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Images/Media/Generative Metadata
+/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Generative Metadata
+/sitecore/content/Applications/Content Editor/Ribbons/Strips/Review/Generative Metadata
+/sitecore/system/Settings/Feature/WillWorkForCache
+/sitecore/templates/Feature/WillWorkForCache
+
+Files
+
+\App_Config\Include\Feature\WillWorkForCache.Feature.GenerativeMetadata.config
+\bin\Azure.AI.TextAnalytics.dll
+\bin\Azure.AI.Vision.ImageAnalysis.dll
+\bin\Azure.Core.dll
+\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\bin\System.ClientModel.dll
+\bin\System.Memory.Data.dll
+\bin\WillWorkForCache.Feature.GenerativeMetadata.dll
+\sitecore modules\GenerativeMetadata\Scripts\Assistant.js
+
+### WillWorkForCache-Example-Content-Package-1.0
+
+/sitecore/content/Hackathon
+/sitecore/Forms/Hackathon
+/sitecore/media library/Project/Hackathon
+/sitecore/media library/Themes/Hackathon
+/sitecore/templates/Project/Hackathon
+
+/sitecore/system/Settings/Foundation/Experience Accelerator/Multisite/Management/Sites
