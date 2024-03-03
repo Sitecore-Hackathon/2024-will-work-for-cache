@@ -18,9 +18,8 @@ This allows content authors to focus on the creation and curation of high-qualit
 The module is designed to be useful and usable across a wide variety of existing Sitecore projects, and to be easily extended for other use cases (e.g. to populate additional text fields).
 
 ## Video link
-⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_ [TODO]
 
-⟹ [Replace this Video link](#video-link)
+⟹ [Sitecore-Hackathon-2024-WillWorkForCache.mp4](Sitecore-Hackathon-2024-WillWorkForCache.mp4)
 
 ## Pre-requisites and Dependencies
 * Sitecore 10.3.1 XM installed and running (containerized is fine) with a valid Sitecore license
