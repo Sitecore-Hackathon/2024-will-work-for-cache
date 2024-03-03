@@ -35,8 +35,10 @@ _Note: An existing set of endpoint URLs and access keys will be emailed through 
 
 1. This module runs on CM and requires two assembly binding redirects to be applied within the CM web.config. There is an updated copy of the base 10.3.1 XM web.config located here: [env/docker/deploy/cm/Web.config](env/docker/deploy/cm/Web.config) - copy this to your CM instance's wwwroot directory, or deploy it to the webroot of your CM docker instance.
     * The only changes in this file are the bindings for *Azure.Core* and *System.Diagnostics.DiagnosticSource* as part of a larger project, would be applied via a web.config transform as part of the build process.
-2. Use the Sitecore Installation wizard to install the [package - TODO](#link-to-package)  
-3. Update the configuration item listed.
+2. Use the Sitecore Installation wizard to install the two packages:
+    * [sitecore_packages/WillWorkForCache-GenerativeMetadata-Module-1.0.zip](sitecore_packages/WillWorkForCache-GenerativeMetadata-Module-1.0.zip)
+    * [sitecore_packages/WillWorkForCache-Example-Content-Package-1.0.zip](sitecore_packages/WillWorkForCache-Example-Content-Package-1.0.zip)
+6. Update the configuration item listed.
 
 ### Configuration
 
