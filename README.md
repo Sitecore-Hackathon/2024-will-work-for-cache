@@ -132,31 +132,35 @@ Built with a view for future extension:
 
 ### WillWorkForCache-GenerativeMetadata-Module-1.0
 
+This package contains the core functionality of this module.
+
 Items
-/sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Images/Media/Generative Metadata
-/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Generative Metadata
-/sitecore/content/Applications/Content Editor/Ribbons/Strips/Review/Generative Metadata
-/sitecore/system/Settings/Feature/WillWorkForCache
-/sitecore/templates/Feature/WillWorkForCache
+* /sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Images/Media/Generative Metadata
+* /sitecore/content/Applications/Content Editor/Ribbons/Chunks/Generative Metadata
+* /sitecore/content/Applications/Content Editor/Ribbons/Strips/Review/Generative Metadata
+* /sitecore/system/Settings/Feature/WillWorkForCache
+* /sitecore/templates/Feature/WillWorkForCache
 
 Files
-
-\App_Config\Include\Feature\WillWorkForCache.Feature.GenerativeMetadata.config
-\bin\Azure.AI.TextAnalytics.dll
-\bin\Azure.AI.Vision.ImageAnalysis.dll
-\bin\Azure.Core.dll
-\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-\bin\System.ClientModel.dll
-\bin\System.Memory.Data.dll
-\bin\WillWorkForCache.Feature.GenerativeMetadata.dll
-\sitecore modules\GenerativeMetadata\Scripts\Assistant.js
+* \App_Config\Include\Feature\WillWorkForCache.Feature.GenerativeMetadata.config
+* \bin\Azure.AI.TextAnalytics.dll
+* \bin\Azure.AI.Vision.ImageAnalysis.dll
+* \bin\Azure.Core.dll
+* \bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+* \bin\System.ClientModel.dll
+* \bin\System.Memory.Data.dll
+* \bin\WillWorkForCache.Feature.GenerativeMetadata.dll
+* \sitecore modules\GenerativeMetadata\Scripts\Assistant.js
 
 ### WillWorkForCache-Example-Content-Package-1.0
 
-/sitecore/content/Hackathon
-/sitecore/Forms/Hackathon
-/sitecore/media library/Project/Hackathon
-/sitecore/media library/Themes/Hackathon
-/sitecore/templates/Project/Hackathon
+This package contains some sample pages and images that alt text / keywords / summaries can be generated from.
+
+Items
+* /sitecore/content/Hackathon
+* /sitecore/Forms/Hackathon
+* /sitecore/media library/Project/Hackathon
+* /sitecore/media library/Themes/Hackathon
+* /sitecore/templates/Project/Hackathon
 
 /sitecore/system/Settings/Foundation/Experience Accelerator/Multisite/Management/Sites
