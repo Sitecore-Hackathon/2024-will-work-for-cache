@@ -50,3 +50,12 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+
+#env files and docker data
+.env
+/env/docker/deploy/*/*
+/env/device-detection-data/*
+/env/mssql-data/*
+/env/solr-data/*
+/env/traefik/certs/*
+!readme.md
