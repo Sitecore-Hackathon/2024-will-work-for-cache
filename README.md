@@ -29,7 +29,7 @@ The module is designed to be useful and usable across a wide variety of existing
     * 1x Computer Vision instance - for image alt tag generation - free tier is fine
     * 1x Text Analytics instance - Azure Cognitive Service for Language - for text summarization
  
-_Note: An existing set of endpoint URLs and access keys will be provided for judging._
+_Note: An existing set of endpoint URLs and access keys will be emailed through for judging so no additional resources will need to be created._
 
 ## Installation instructions
 
@@ -42,7 +42,11 @@ _Note: An existing set of endpoint URLs and access keys will be provided for jud
 
 #### Required Settings
 
-Update the following fields on the */sitecore/Settings/Feature/GenerativeMetadata* [TODO CHECK PATH] item:
+Update the following fields on the */sitecore/system/Settings/Feature/WillWorkForCache/GenerativeMetadata/GenerativeMetadataSettings* item - these will be blank by default.
+
+_Note: An existing set of endpoint URLs and access keys will be emailed through for judging._
+
+![Settings item](docs/images/Settings.png?raw=true "Settings item")
 
 For the endpoint and access key for the Vision Services instance you want to use:
 * **Vision Endpoint** should be the endpoint, e.g. "https://whfc2024-vision.cognitiveservices.azure.com/"
