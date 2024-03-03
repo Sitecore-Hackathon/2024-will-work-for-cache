@@ -162,5 +162,4 @@ Items
 * /sitecore/media library/Project/Hackathon
 * /sitecore/media library/Themes/Hackathon
 * /sitecore/templates/Project/Hackathon
-
-/sitecore/system/Settings/Foundation/Experience Accelerator/Multisite/Management/Sites
+* /sitecore/system/Settings/Foundation/Experience Accelerator/Multisite/Management/Sites
